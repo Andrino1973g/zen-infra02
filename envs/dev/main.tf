@@ -1,4 +1,4 @@
-# Initial dev environment eks clustersetup 
+# Initial dev environment eks cluster setup 
 
 data "aws_caller_identity" "current" {}
 
