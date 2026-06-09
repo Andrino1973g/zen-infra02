@@ -126,7 +126,7 @@ echo "  You will be asked for 4 values:"
 echo "    1. Target environment  - which K8s namespace to deploy to"
 echo "    2. GitOps repo URL     - HTTPS URL of your zen-gitops fork"
 echo "    3. GitHub username     - your GitHub account name"
-echo "    4. GitHub token        - PAT with read access to zen-gitops (input hidden)"
+echo "    4. GitHub token        - PAT with read access to zen-gitops02 (input hidden)"
 echo ""
 
 ENV=""
@@ -140,7 +140,7 @@ prompt_choice ENV \
 
 prompt GITOPS_REPO_URL \
   "GitOps repository HTTPS URL" \
-  "https://github.com/your-github-username/zen-gitops.git" \
+  "https://github.com/your-github-username/zen-gitops02.git" \
   ""
 
 prompt GITHUB_USERNAME \
@@ -184,7 +184,7 @@ echo "--------------------------------------------"
 echo "  Step 1 of 3: Register GitOps repository"
 echo "--------------------------------------------"
 
-kubectl create secret generic zen-gitops-repo \
+kubectl create secret generic zen-gitops02-repo \
   --namespace "$ARGOCD_NAMESPACE" \
   --from-literal=type=git \
   --from-literal=url="$GITOPS_REPO_URL" \
@@ -210,7 +210,7 @@ echo "--------------------------------------------"
 echo "  Step 2 of 3: Create pharma AppProject"
 echo "--------------------------------------------"
 
-PROJECT_FILE="$WORKSPACE_ROOT/zen-gitops/argocd/projects/pharma-project.yaml"
+PROJECT_FILE="$WORKSPACE_ROOT/zen-gitops02/argocd/projects/pharma-project.yaml"
 if [[ -f "$PROJECT_FILE" ]]; then
   sed "s|your-github-username|${GITHUB_USERNAME}|g" "$PROJECT_FILE" | kubectl apply -f -
   log "AppProject applied from $PROJECT_FILE"
@@ -256,7 +256,7 @@ echo "--------------------------------------------"
 echo "  Step 3 of 3: Deploy Applications ($ENV)"
 echo "--------------------------------------------"
 
-APPS_DIR="$WORKSPACE_ROOT/zen-gitops/argocd/apps/$ENV"
+APPS_DIR="$WORKSPACE_ROOT/zen-gitops02/argocd/apps/$ENV"
 [[ -d "$APPS_DIR" ]] || die "Apps directory not found: $APPS_DIR"
 
 if [[ "$ENV" == "dev" ]]; then
