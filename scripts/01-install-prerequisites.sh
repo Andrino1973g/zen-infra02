@@ -189,8 +189,8 @@ echo "    Then open: https://localhost:8080"
 echo "  ============================================================"
 echo ""
 
-if [[ -f "zen-gitops/argocd/install/argocd-ingress.yaml" ]]; then
-  kubectl apply -f zen-gitops/argocd/install/argocd-ingress.yaml
+if [[ -f "zen-gitops02/argocd/install/argocd-ingress.yaml" ]]; then
+  kubectl apply -f zen-gitops02/argocd/install/argocd-ingress.yaml
   log "ArgoCD ingress applied."
 fi
 
