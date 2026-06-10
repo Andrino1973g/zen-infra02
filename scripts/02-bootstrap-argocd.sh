@@ -140,7 +140,7 @@ prompt_choice ENV \
 
 prompt GITOPS_REPO_URL \
   "GitOps repository HTTPS URL" \
-  "https://github.com/your-github-username/zen-gitops02.git" \
+  "https://github.com/Andrino1973g/zen-gitops02.git" \
   ""
 
 prompt GITHUB_USERNAME \
@@ -192,7 +192,7 @@ kubectl create secret generic zen-gitops02-repo \
   --from-literal=password="$GITOPS_TOKEN" \
   --dry-run=client -o yaml | kubectl apply -f -
 
-kubectl label secret zen-gitops-repo \
+kubectl label secret zen-gitops02-repo \
   "argocd.argoproj.io/secret-type=repository" \
   --namespace "$ARGOCD_NAMESPACE" \
   --overwrite
