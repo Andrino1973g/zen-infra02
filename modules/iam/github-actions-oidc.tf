@@ -62,6 +62,7 @@ data "aws_iam_policy_document" "github_actions_assume_role" {
         "repo:${var.github_org}/zen-pharma-frontend:ref:refs/heads/develop",
         "repo:${var.github_org}/zen-pharma-backend:ref:refs/heads/main",
         "repo:${var.github_org}/zen-pharma-backend:ref:refs/heads/develop",
+        "repo:${var.github_org}/zen-pharma-backend:ref:refs/heads/feat*"
       ]
     }
   }
